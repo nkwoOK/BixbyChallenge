@@ -1,0 +1,46 @@
+action (CheckPublicInfo) {
+  type(Search)
+  description (도착 정보 알려주는 메인 액션)
+  collect {
+    input (departurePoint) {
+      type (DeparturePoint)
+      min (Optional) max (One)
+    }
+    input (destinationPoint) {
+      type (DestinationPoint)
+      min (Optional) max (One)
+    }
+    input (publicType) {
+      type (PublicType)
+      min (Optional) max (One)
+    }
+    // input (departTime) {
+    //   type (DepartTime)
+    //   min (Optional) max (One)
+    // }
+    input (cost) {
+      type (Cost)
+      min (Optional) max (One)
+    }
+    input (available) {
+      type (Available)
+      min (Optional) max (One)
+    }
+    
+    input (time) {
+      type (time.DateTimeExpression) // 4개의 종류를 다 통합해버림. 
+      min (Optional) max (One)
+      
+      default-select{ //with learning?
+//         with-learning{
+//           
+//         } geo에서 많이 씀. 광주 가 나오면 그 중 하나 , 사용자가 바꿀 수 있음. 몇번 사용자가 고르면 ㅇㅇ
+        with-rule{
+          select-first
+        }
+      }
+  }
+}
+  
+  output (PublicInfoResult)
+}

@@ -1,0 +1,4 @@
+enum (Available) {
+  description (__DESCRIPTION__)
+  symbol (__SYMBOL__)
+}

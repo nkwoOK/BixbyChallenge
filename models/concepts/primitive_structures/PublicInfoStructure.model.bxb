@@ -1,0 +1,12 @@
+structure (PublicInfoStructure) {
+  description ('시외버스', '기차'와 같은 카드)
+  property (publicDetailStructure) {
+    type (PublicDetailStructure)
+    min (Optional) max (Many)
+  }
+  property(time){ //걸리는 시간으로 하고싶은데 아직은 잘 모르겠다.
+    type (Time)
+    min (Optional) max (One)
+  }
+
+}

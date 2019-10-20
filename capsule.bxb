@@ -1,0 +1,28 @@
+capsule {
+  id (playground.moving)
+  version (0.1.0)
+  format (3)
+  targets {
+    target (bixby-mobile-en-US)
+    target (bixby-mobile-ko-KR)
+  }
+  runtime-flags {
+    concepts-inherit-super-type-features
+    modern-prompt-rejection
+    support-halt-effect-in-computed-inputs
+  }
+    
+  capsule-imports{
+
+
+    import (viv.entity){
+      as (entity) version(3.19.8)
+    }
+    import(viv.time){
+      as (time) version-from(entity)
+    } 
+    import (viv.geo){
+      as (geo) version-from (entity)
+    }
+  }
+}

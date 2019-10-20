@@ -1,0 +1,5 @@
+train (t-ikwazt4fqi405ufjtpskn3338) {
+  utterance ("[g:PublicInfoResult] {[g:DeparturePoint] (서울)[v:geo.SearchTerm]}에서 {[g:geo.NamedPoint] (대전)[v:geo.SearchTerm]}가는 차 있어?")
+  plan (rYyxDoJAEEQHBVGwMFrZqR/APxhNjI0h6g8grMdF4Mhxh7Hx2z0xaoGlm+xO9s1kMMSizKIbk0IXSZCLmhcsCPUp4/G2OIs9VTpTmLczq5TiyzeIWTuypjKSSksKBS8UxjWvA0Yi2EU5JS82ebOlVqLSjFGlMP0B79eUJGH0tjYk/tf66ThQJOP0SDL/yXxY6KALGw56cNHHAJ6haHHbrGW43VwY96XPcZrfMznfaAfuAw==)
+  last-modified (1571334159565)
+}

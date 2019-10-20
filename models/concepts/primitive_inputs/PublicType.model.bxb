@@ -1,0 +1,4 @@
+enum (PublicType) {
+  description (__DESCRIPTION__)
+  symbol (__SYMBOL__)
+}

@@ -1,0 +1,5 @@
+structure (DeparturePoint){
+  description (출발 지역 네임포인트)
+  role-of (geo.NamedPoint)
+
+}

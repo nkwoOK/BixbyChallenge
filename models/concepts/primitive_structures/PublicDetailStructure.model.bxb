@@ -1,0 +1,23 @@
+structure (PublicDetailStructure) {
+  description (차 하나하나마다의 상세 정보)
+  property (departurePoint) {
+    type (DeparturePoint)
+    min (Optional) max (One)
+  }
+  property (destinationPoint) {
+    type (DestinationPoint)
+    min (Optional) max (One)
+  }
+  property (time) {
+    type (Time)
+    min (Optional) max (One)
+  }
+  property (available) {
+    type (Available)
+    min (Optional) max (One)
+  }
+  property (cost) {
+    type (Cost)
+    min (Optional) max (One)
+  }
+}

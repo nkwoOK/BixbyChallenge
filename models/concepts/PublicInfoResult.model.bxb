@@ -1,0 +1,16 @@
+structure (PublicInfoResult) {
+  //structure 안에 structure가 있는?
+  description (대중교통별로 시간순? 거리순?으로 정렬)
+  property (publicInfoStructure) {
+    type (PublicInfoStructure)
+    min (Optional) max (Many)
+  }
+  property (destinationPoint){
+    type (DestinationPoint)
+    min (Optional) max (One)
+  }
+  property (departurePoint){
+    type (DeparturePoint)
+    min (Optional) max (One)
+  }
+}

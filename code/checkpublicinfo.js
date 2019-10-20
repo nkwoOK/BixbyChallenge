@@ -10,11 +10,22 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
       http=require('http'),
       dates=require('dates');
 
-  console.log(departurePoint)
+  console.log(destinationPoint)
   console.log('latitude: ')
   console.log(departurePoint.point.latitude)
   console.log('longitude: ')
   console.log(departurePoint.point.longitude)
+
+  //큰일이야 큰일
+
+
+
+
+
+
+
+
+
 
   var pointTable= require('./pointtable.js').table,
       distanceTable={}
@@ -139,6 +150,7 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
           var drivingMin=driving%60
           return parseInt(driving/60)+'시간 '+drivingMin+'분'
         }
+        // console.log(drivingTime(201610011450, 201610011200))
 
         // console.log(drivingTime(responseItem[0].arrPlandTime, responseItem[0].depPlandTime))
 
@@ -147,16 +159,16 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
             timeInfoArray.push({
               departTime: convertNumTime(responseItem[k].depPlandTime),
               arriveTime: convertNumTime(responseItem[k].arrPlandTime),
-              drivingTime: drivingTime(responseItem[k].arrPlandTime, responseItem[i].depPlandTime),
+              drivingTime: drivingTime(responseItem[k].arrPlandTime, responseItem[k].depPlandTime),
               busGrade: responseItem[k].gradeNm,
               charge: responseItem[k].charge
             });
           }
 
           busResultArray.push({
-            departure: responseItem[0].depPlaceNm,
-            destination: responseItem[0].arrPlaceNm,
-            timeInfo: timeInfoArray
+            departureName: responseItem[0].depPlaceNm,
+            destinationName: responseItem[0].arrPlaceNm,
+            timeStructure: timeInfoArray
           }
           );
         }else{ //한개일때
@@ -168,10 +180,10 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
               charge: responseItem.charge
           })
           busResultArray.push({
-            departure: responseItem.depPlaceNm,
-            destination: responseItem.arrPlaceNm,
+            departureName: responseItem.depPlaceNm,
+            destinationName: responseItem.arrPlaceNm,
             // grade: responseItem.gradeNm,
-            timeInfo: timeInfoArray
+            timeStructure: timeInfoArray
           });
         }
         

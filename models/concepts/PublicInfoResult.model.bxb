@@ -14,13 +14,25 @@ structure (PublicInfoResult) {
     type (BusResultStructure)
     min (Optional) max (Many)
   }
+
+  property (expressResultStructure){
+    type (ExpressResultStructure)
+    min (Optional) max (Many)
+  }
+
+  property (trainResultStructure){
+    type (TrainResultStructure)
+    min (Optional) max (Many)
+  }
+
   property (filename){
     type (Filename)
     min (Optional) max (One)
 
   }
-  property (publicInfoStructure) {
-  type (PublicInfoStructure)
-  min (Optional) max (Many)
-  }
 }
+//   property (publicInfoStructure) {
+//   type (PublicInfoStructure)
+//   min (Optional) max (Many)
+//   }
+// }

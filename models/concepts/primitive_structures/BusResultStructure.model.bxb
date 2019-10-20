@@ -1,17 +1,16 @@
 structure (BusResultStructure) {
   description (__DESCRIPTION__)
-  property (departurePoint) {
-    type (DeparturePoint)
+  property (departureName) {
+    type (DepartureName)
     min (Optional) max (One)
   }
-  property (destinationPoint){
-    type (DestinationPoint)
+  property (destinationName){
+    type (DestinationName)
     min (Optional) max (One)
   }
   property (timeStructure){
     type (TimeStructure)
     min (Optional) max (Many)
   }
-
-
 }
+

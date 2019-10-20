@@ -1,0 +1,33 @@
+dialog (Result) {
+  match{
+    PublicInfoResult(result){
+      from-output: CheckPublicInfo(output)
+    }
+  }
+// switch state action으로 찾는 중입니다 할수 있음
+// proximal로 어디 찾을건지 골라라 할 수 있음   
+//choose random도 가능, 더 많은 발화를 제공 가능
+//로(으로 )어케하더라 
+
+
+//dialog가 안이쁘다... 현위치일때도 분기해야 하는데
+  if(size(result.busResultStructure)+size(result.expressResultStructure)+size(result.trainResultStructure) > 1){
+    template ("#{value(result.departurePoint)}에서 #{value(result.destinationPoint)}로 가는 #{integer(size(result.busResultStructure)+size(result.expressResultStructure)+size(result.trainResultStructure))}가지 방법을 찾았어요!")
+  }
+  else-if (size(result.busResultStructure)+size(result.expressResultStructure)+size(result.trainResultStructure) ==1){
+    // template ("#{value(result.departurePoint.name)}에서 #{value(result.destinationPoint.name)}으로 "
+    if (size(result.busResultStructure)==1){
+      template ("#{value(result.departurePoint.name)}에서 #{value(result.destinationPoint.name)}로 가는 시외버스를 찾았어요!")
+    }
+    else-if (size(result.expressResultStructure)==1){
+      template ("#{value(result.departurePoint.name)}에서 #{value(result.destinationPoint.name)}로 가는 고속버스를 찾았어요!")  
+    }
+    else{
+      template ("#{value(result.departurePoint.name)}에서 #{value(result.destinationPoint.name)}로 가는 기차를 찾았어요!")
+    }
+  }
+  else{
+    template ("#{value(result.departurePoint.name)}에서 #{value(result.destinationPoint.name)}로 가는 대중교통이 없네요.") 
+  }
+  // template("__TEMPLATE_TEXT__")
+}

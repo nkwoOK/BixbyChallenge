@@ -1,10 +1,7 @@
 structure (PublicInfoResult) {
   //structure 안에 structure가 있는?
-  description (대중교통별로 시간순? 거리순?으로 정렬)
-  property (publicInfoStructure) {
-    type (PublicInfoStructure)
-    min (Optional) max (Many)
-  }
+  description (대중교통별로 시간순? 거리순?으로 정렬.. 아마 거리순으로 정렬하면 표 참조해서 로직 한번더 돌려야할듯)
+
   property (destinationPoint){
     type (DestinationPoint)
     min (Optional) max (One)
@@ -12,5 +9,18 @@ structure (PublicInfoResult) {
   property (departurePoint){
     type (DeparturePoint)
     min (Optional) max (One)
+  }
+  property (busResultStructure){
+    type (BusResultStructure)
+    min (Optional) max (Many)
+  }
+  property (filename){
+    type (Filename)
+    min (Optional) max (One)
+
+  }
+  property (publicInfoStructure) {
+  type (PublicInfoStructure)
+  min (Optional) max (Many)
   }
 }

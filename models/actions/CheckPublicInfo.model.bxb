@@ -18,10 +18,10 @@ action (CheckPublicInfo) {
     //   type (DepartTime)
     //   min (Optional) max (One)
     // }
-    input (cost) {
-      type (Cost)
-      min (Optional) max (One)
-    }
+    // input (cost) {
+    //   type (Cost)
+    //   min (Optional) max (One)
+    // }
     input (available) {
       type (Available)
       min (Optional) max (One)

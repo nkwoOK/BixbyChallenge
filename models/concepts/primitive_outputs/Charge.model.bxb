@@ -1,0 +1,3 @@
+integer (Charge) {
+  description (__DESCRIPTION__)
+}

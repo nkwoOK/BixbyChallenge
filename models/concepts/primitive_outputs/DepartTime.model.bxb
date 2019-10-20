@@ -1,0 +1,5 @@
+structure (DepartTime) {
+  description (버스 오는 시간 룰루)
+  extends(viv.time.Time)
+  }
+  

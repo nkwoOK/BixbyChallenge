@@ -1,0 +1,5 @@
+enum (BusGrade) {
+  description (__DESCRIPTION__)
+  symbol (일반)
+  symbol (우등)
+}

@@ -1,0 +1,6 @@
+enum (Filename) {
+  description (__DESCRIPTION__)
+  symbol (/images/bus.jpg)
+  symbol (/images/expressbus.jpg)
+  symbol (/images/train.jpg)
+}

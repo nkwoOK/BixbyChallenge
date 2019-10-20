@@ -1,0 +1,25 @@
+structure (TimeStructure) {
+  description (각각 시간에 해당하는거)
+  property (departTime) {
+    type  (DepartTime)
+    min (Optional) max (One)
+  }
+  property (arriveTime){
+    type (ArriveTime)
+    min (Optional) max (One)
+  }
+  property (drivingTime){
+    type (DrivingTime)
+    min (Optional) max (One)
+  }
+  property (busGrade){
+    type (BusGrade)
+    min (Optional) max (One)
+  }
+  property (charge){
+    type (Charge)
+    min (Optional) max (One)
+  }
+
+
+}

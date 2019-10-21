@@ -12,9 +12,14 @@ structure (PublicResultStructure) {
     type (TimeStructure)
     min (Optional) max (Many)
   }
-  property (publicType){
-    type (PublicType)
+  // property (publicType){
+  //   type (PublicType)
+  //   min (Optional) max (One)
+  // }
+  property (filename){
+    type (Filename)
     min (Optional) max (One)
+
   }
 }
 

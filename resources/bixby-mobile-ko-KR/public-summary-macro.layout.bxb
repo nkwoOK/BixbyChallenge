@@ -1,0 +1,37 @@
+layout-macro-def (public-summary-macro){
+  params{
+    param (result){
+      type (PublicResultStructure)
+      min (Optional)
+      max (Many)
+    }
+  }
+  content{
+    compound-card{
+      content{
+        hbox{
+          content{
+            vbox{
+              halign (Start)
+              content{
+                single-line{
+                  image{
+                    url("#{value(result.filename)}")
+                  }
+                }
+              }
+            }
+            vbox{
+              content{
+                text{
+                  style(Title_M)
+                  value("#{value(result.departureName)} 에서 #{value(result.destinationName)}")  
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

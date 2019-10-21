@@ -1,20 +1,36 @@
 result-view{
-  match: PublicInfoResult(result){
-    from-output : CheckPublicInfo(action)
+  match{
+    PublicResultStructure(result){
+      from-property : PublicInfoResult{
+        from-output: CheckPublicInfo
+      }
+    }
   }
-
   render{
     if(size(result)>1){
       list-of (result){
-        
-
+        where-each (each){
+          layout-macro (public-summary-macro){
+            // param ()
+            param (result){
+              expression (each)
+            }
+            
+            
+            //   expression (each)
+          }
+        }
       }
-
-
+    }else{
+    //   layout-macro (public-detail-macro){
+    //     param(result){
+    //       expression (result)
+    //     }
+    //   }
+    // }
     }
-
   }
-
-
-
 }
+
+
+// }

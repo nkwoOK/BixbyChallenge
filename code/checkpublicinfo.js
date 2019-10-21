@@ -176,7 +176,8 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
             departureName: responseItem[0].depPlaceNm,
             destinationName: responseItem[0].arrPlaceNm,
             timeStructure: timeInfoArray,
-            publicType: publicType
+            // publicType: publicType,
+            filename: filename
           }
           );
         }else{ //한개일때
@@ -192,7 +193,7 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
             destinationName: responseItem.arrPlaceNm,
             // grade: responseItem.gradeNm,
             timeStructure: timeInfoArray,
-            publicType: publicType
+            filename: filename
           });
         }
         
@@ -219,6 +220,6 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
     departurePoint: departurePoint, //일단 포인트 리턴하자!
     destinationPoint: destinationPoint,
     publicResultStructure: busResultArray,
-    filename: filename 
+    // filename: filename 
   }
 }

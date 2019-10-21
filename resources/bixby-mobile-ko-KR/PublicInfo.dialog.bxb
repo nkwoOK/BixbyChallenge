@@ -16,10 +16,10 @@ dialog (Result) {
   }
   else-if (size(result.publicResultStructure)==1){
     // template ("#{value(result.departurePoint.name)}에서 #{value(result.destinationPoint.name)}으로 "
-    if (size(result.publicResultStructure.publicType)=='시외버스'){
+    if (size(result.publicResultStructure.filename)=='/images/bus.jpg'){
       template ("#{value(result.departurePoint.name)}에서 #{value(result.destinationPoint.name)}로 가는 시외버스를 찾았어요!")
     }
-    else-if (size(result.publicResultStructure.publicType)=='고속버스'){
+    else-if (size(result.publicResultStructure.filename)=='/images/expressbus.jpg'){
       template ("#{value(result.departurePoint.name)}에서 #{value(result.destinationPoint.name)}로 가는 고속버스를 찾았어요!")  
     }
     else{

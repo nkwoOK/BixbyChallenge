@@ -1,4 +1,4 @@
-structure (BusResultStructure) {
+structure (PublicResultStructure) {
   description (__DESCRIPTION__)
   property (departureName) {
     type (DepartureName)
@@ -11,6 +11,10 @@ structure (BusResultStructure) {
   property (timeStructure){
     type (TimeStructure)
     min (Optional) max (Many)
+  }
+  property (publicType){
+    type (PublicType)
+    min (Optional) max (One)
   }
 }
 

@@ -1,4 +1,6 @@
 enum (PublicType) {
   description (__DESCRIPTION__)
-  symbol (__SYMBOL__)
+  symbol (시외버스)
+  symbol (고속버스)
+  symbol (기차) //기차에서의 분리 어떡하지 ?
 }

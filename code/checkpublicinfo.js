@@ -16,16 +16,21 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
   console.log('longitude: ')
   console.log(departurePoint.point.longitude)
 
+  // var sY= departurePoint.point.latitude,
+  //     sX= departurePoint.point.longitude,
+  //     eY= destinationPoint.point.latitude,
+  //     eX= destinationPoint.point.longitude;
   //큰일이야 큰일
+    
+  // console.log(http.getUrl(url, {format: 'xmljs'}))
 
-
-
-
-
-
-
-
-
+  // 환승 api test code
+	// var url = "https://api.odsay.com/v1/api/searchPubTransPath?SX="+sX+"&SY="+sY+"&EX="+eX+"&EY="+eY+"&apiKey=sRoBDwzo/Sk1GRkUYI9zdw";
+  
+  // var preUrl="https://api.odsay.com/v1/api/searchPubTransPathR?lang=0&SX=",
+  //     url = preUrl+sX+"&SY="+sY+"&EX="+eX+"&EY="+eY+"&apiKey="+encodeURI('ramBlYRtvsTstJnTkrSqLF46psg5XZgiOFkNoERqngc');
+  // console.log(url);
+  // console.log(http.getUrl(url, {format: 'json'}));
 
   var pointTable= require('./pointtable.js').table,
       distanceTable={}
@@ -115,7 +120,9 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
       
 
   //그림 정하기
-  var filename= '/images/bus.jpg'
+  var filename= '/images/bus.jpg',
+      publicType='시외버스';
+
 
 
 
@@ -168,7 +175,8 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
           busResultArray.push({
             departureName: responseItem[0].depPlaceNm,
             destinationName: responseItem[0].arrPlaceNm,
-            timeStructure: timeInfoArray
+            timeStructure: timeInfoArray,
+            publicType: publicType
           }
           );
         }else{ //한개일때
@@ -183,7 +191,8 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
             departureName: responseItem.depPlaceNm,
             destinationName: responseItem.arrPlaceNm,
             // grade: responseItem.gradeNm,
-            timeStructure: timeInfoArray
+            timeStructure: timeInfoArray,
+            publicType: publicType
           });
         }
         
@@ -209,9 +218,7 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
   return {
     departurePoint: departurePoint, //일단 포인트 리턴하자!
     destinationPoint: destinationPoint,
-    busResultStructure: busResultArray,
-    expressResult: expressResultArray,
-    trainResult: trainResultArray,
+    publicResultStructure: busResultArray,
     filename: filename 
   }
 }

@@ -1,0 +1,20 @@
+result-view{
+  match: PublicInfoResult(result){
+    from-output : CheckPublicInfo(action)
+  }
+
+  render{
+    if(size(result)>1){
+      list-of (result){
+        
+
+      }
+
+
+    }
+
+  }
+
+
+
+}

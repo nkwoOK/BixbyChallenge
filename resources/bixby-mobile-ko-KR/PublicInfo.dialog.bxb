@@ -11,15 +11,15 @@ dialog (Result) {
 
 
 //dialog가 안이쁘다... 현위치일때도 분기해야 하는데
-  if(size(result.busResultStructure)+size(result.expressResultStructure)+size(result.trainResultStructure) > 1){
-    template ("#{value(result.departurePoint)}에서 #{value(result.destinationPoint)}로 가는 #{integer(size(result.busResultStructure)+size(result.expressResultStructure)+size(result.trainResultStructure))}가지 방법을 찾았어요!")
+  if(size(result.publicResultStructure) > 1){
+    template ("#{value(result.departurePoint)}에서 #{value(result.destinationPoint)}로 가는 #{integer(size(result.publicResultStructure))}가지 방법을 찾았어요!")
   }
-  else-if (size(result.busResultStructure)+size(result.expressResultStructure)+size(result.trainResultStructure) ==1){
+  else-if (size(result.publicResultStructure)==1){
     // template ("#{value(result.departurePoint.name)}에서 #{value(result.destinationPoint.name)}으로 "
-    if (size(result.busResultStructure)==1){
+    if (size(result.publicResultStructure.publicType)=='시외버스'){
       template ("#{value(result.departurePoint.name)}에서 #{value(result.destinationPoint.name)}로 가는 시외버스를 찾았어요!")
     }
-    else-if (size(result.expressResultStructure)==1){
+    else-if (size(result.publicResultStructure.publicType)=='고속버스'){
       template ("#{value(result.departurePoint.name)}에서 #{value(result.destinationPoint.name)}로 가는 고속버스를 찾았어요!")  
     }
     else{

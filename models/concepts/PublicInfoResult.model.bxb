@@ -10,21 +10,11 @@ structure (PublicInfoResult) {
     type (DeparturePoint)
     min (Optional) max (One)
   }
-  property (busResultStructure){
-    type (BusResultStructure)
+  property (publicResultStructure){
+    type (PublicResultStructure)
     min (Optional) max (Many)
   }
-
-  property (expressResultStructure){
-    type (ExpressResultStructure)
-    min (Optional) max (Many)
-  }
-
-  property (trainResultStructure){
-    type (TrainResultStructure)
-    min (Optional) max (Many)
-  }
-
+  
   property (filename){
     type (Filename)
     min (Optional) max (One)

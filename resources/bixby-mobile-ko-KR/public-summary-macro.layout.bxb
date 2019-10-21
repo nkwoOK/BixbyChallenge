@@ -1,6 +1,6 @@
 layout-macro-def (public-summary-macro){
   params{
-    param (result){
+    param (structure){
       type (PublicResultStructure)
       min (Optional)
       max (Many)
@@ -9,29 +9,78 @@ layout-macro-def (public-summary-macro){
   content{
     compound-card{
       content{
+        cell-card{ //area?
+          slot1{
+            image{
+              shape (Square)
+              url("#{value(structure.filename)}")
+            }
+          }
+          slot2{
+            content{
+              primary{
+                template ("출발: #{value(structure.departureName)}")
+              }
+              secondary{
+                template ("도착: #{value(structure.destinationName)}")
+              }
+            }
+          }
+        }
         hbox{
           content{
             vbox{
-              halign (Start)
+              // grow
               content{
-                single-line{
-                  image{
-                    url("#{value(result.filename)}")
+                text{
+                  value{
+                    template ("#{value(structure.timeStructure.departTime)}")
                   }
                 }
               }
-            }
-            vbox{
+            }vbox{
+              // grow
               content{
                 text{
-                  style(Title_M)
-                  value("#{value(result.departureName)} 에서 #{value(result.destinationName)}")  
+                  value{
+                    template ("#{value(structure.timeStructure.arriveTime)}")
+                  }
+                }
+              }
+            }vbox{
+              // grow
+              content{
+                text{
+                  value{
+                    template ("#{value(structure.timeStructure.busGrade)}")
+                  }
                 }
               }
             }
           }
         }
+         
       }
     }
   }
 }
+ 
+        // single-line{
+        //   text{
+        //     value{
+        //       template ("호롤롤롤")
+        //     }
+        //   }
+        // }
+        
+
+
+
+
+        // paragraph{
+        //   style(Detail_M)
+        //   value{
+        //     // template ("호롤롤")
+        //     template ("#{value(structure.timeStructure)}")
+        //   }
+       

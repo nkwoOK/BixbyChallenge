@@ -1,0 +1,14 @@
+layout-macro-def(public-detail-macro) {
+  params{
+    param (this){
+      type (PublicInfoResult)
+      min (Optional)
+      max (Many)
+    }
+  }
+
+  content{
+
+  }
+
+}

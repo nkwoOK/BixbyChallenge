@@ -1,18 +1,22 @@
 result-view{
   match{
-    PublicResultStructure(result){
-      from-property : PublicInfoResult{
-        from-output: CheckPublicInfo
-      }
+    PublicInfoResult(result){
+      from-output: CheckPublicInfo
     }
   }
+  //   PublicResultStructure(result){
+  //     from-property : PublicInfoResult{
+  //       from-output: CheckPublicInfo
+  //     }
+  //   }
+  // }
   render{
-    if(size(result)>1){
-      list-of (result){
+    if(size(result.publicResultStructure)>1){
+      list-of (result.publicResultStructure){
         where-each (each){
           layout-macro (public-summary-macro){
             // param ()
-            param (result){
+            param (structure){
               expression (each)
             }
             
@@ -22,12 +26,12 @@ result-view{
         }
       }
     }else{
-    //   layout-macro (public-detail-macro){
-    //     param(result){
-    //       expression (result)
-    //     }
-    //   }
-    // }
+      // layout-macro (public-detail-macro){
+      //   param(this){
+      //     expression (this)
+      //   }
+      // }
+    
     }
   }
 }

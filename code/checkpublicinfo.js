@@ -109,6 +109,7 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
       now = nowZone.getDateTime()
       timeString=String(now.date.year)+String(now.date.month)+String(now.date.day);
 
+  console.log(now)
   console.log(timeString)
   // 개발계정이라 요즘 날짜가 안뜨나보다.
   timeString='20161001'
@@ -157,6 +158,11 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
           var drivingMin=driving%60
           return parseInt(driving/60)+'시간 '+drivingMin+'분'
         }
+        //시간스트링 얻는함수
+
+        // function timeString(t){
+        //   return t.time.hour+":"+t.time.minute;
+        // }
         // console.log(drivingTime(201610011450, 201610011200))
 
         // console.log(drivingTime(responseItem[0].arrPlandTime, responseItem[0].depPlandTime))
@@ -164,8 +170,8 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
         if(responseItem.length!=undefined){ // 결과 데이터 추가!! 
           for(var k=0;k<responseItem.length;k++){ //일단 전부다 추가하기로 하고,
             timeInfoArray.push({
-              departTime: convertNumTime(responseItem[k].depPlandTime),
-              arriveTime: convertNumTime(responseItem[k].arrPlandTime),
+              departTime: responseItem[k].depPlandTime.substr(8,2)+":"+responseItem[k].depPlandTime.substr(10,2),
+              arriveTime: responseItem[k].arrPlandTime.substr(8,2)+":"+responseItem[k].arrPlandTime.substr(10,2),
               drivingTime: drivingTime(responseItem[k].arrPlandTime, responseItem[k].depPlandTime),
               busGrade: responseItem[k].gradeNm,
               charge: responseItem[k].charge
@@ -182,8 +188,8 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
           );
         }else{ //한개일때
           timeInfoArray.push({
-              departTime: convertNumTime(responseItem.depPlandTime),
-              arriveTime: convertNumTime(responseItem.arrPlandTime),
+              departTime: responseItem.depPlandTime.substr(8,2)+":"+responseItem.depPlandTime.substr(10,2),
+              arriveTime: responseItem.arrPlandTime.substr(8,2)+":"+responseItem.arrPlandTime.substr(10,2),
               drivingTime: drivingTime(responseItem.depPlandTime, responseItem.arrPlandTime),
               busGrade: responseItem.gradeNm,
               charge: responseItem.charge

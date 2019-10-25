@@ -27,39 +27,47 @@ layout-macro-def (public-summary-macro){
             }
           }
         }
-        hbox{
-          content{
-            vbox{
-              // grow
-              content{
-                text{
-                  value{
-                    template ("#{value(structure.timeStructure.departTime)}")
-                  }
-                }
-              }
-            }vbox{
-              // grow
-              content{
-                text{
-                  value{
-                    template ("#{value(structure.timeStructure.arriveTime)}")
-                  }
-                }
-              }
-            }vbox{
-              // grow
-              content{
-                text{
-                  value{
-                    template ("#{value(structure.timeStructure.busGrade)}")
-                  }
-                }
-              }
+        
+        single-line{
+          
+          text{
+            style(Detail_L)
+            value{
+              template ("출발    도착    운행시간    등급    요금")
             }
           }
         }
+
+        paragraph{
+          style(Detail_M)
+          value{
+            // template ("호롤롤")
+            template ("#{value(structure.timeStructure)}")
+          }
+        }
+        
+
+        // hbox{
+        //   content{
+        //     vbox{
+        //       // grow
+        //       content{
+        //         text{
+        //           value{
+        //             template ("#{value(structure.timeStructure)}")
+        //           }
+        //         }
+        //       }
+            
+        //     }
+        //   }
+        // }
          
+      }
+      on-click{
+        intent{
+          goal: playground.moving.PublicResultStructure
+        }
       }
     }
   }
@@ -77,10 +85,4 @@ layout-macro-def (public-summary-macro){
 
 
 
-        // paragraph{
-        //   style(Detail_M)
-        //   value{
-        //     // template ("호롤롤")
-        //     template ("#{value(structure.timeStructure)}")
-        //   }
        

@@ -4,9 +4,9 @@ dialog (Value) {
   // template ("#{size(this)}")
   
   // template  ("fff")
-// template ("\n #{value(this.departTime)}, #{value(this.arriveTime)}")
+template ("\n #{value(this.departTime)}    #{value(this.arriveTime)}    #{value(this.drivingTime)}    #{value(this.busGrade)}    #{value(this.charge)}")
   
-  template ("\n #{value(this.departTime)}")
+  // template ("\n #{value(this.departTime)}")
   // template("[#{value(this[0].location)}, #{value(this[0].borrowable)}\n] [#{value(this[1].location)}, #{value(this[1].borrowable)}\n] [#{value(this[2].location)}, #{value(this[2].borrowable)}]")
 //   
 

@@ -4,35 +4,27 @@ result-view{
       from-output: CheckPublicInfo
     }
   }
-  //   PublicResultStructure(result){
-  //     from-property : PublicInfoResult{
-  //       from-output: CheckPublicInfo
-  //     }
-  //   }
-  // }
   render{
-    if(size(result.publicResultStructure)>1){
+    // if(size(result.publicResultStructure)>1){
       list-of (result.publicResultStructure){
         where-each (each){
           layout-macro (public-summary-macro){
             // param ()
             param (structure){
               expression (each)
-            }
-            
-            
+            } 
             //   expression (each)
           }
         }
       }
-    }else{
-      // layout-macro (public-detail-macro){
-      //   param(this){
-      //     expression (this)
-      //   }
-      // }
+    // }else{
+    //   layout-macro (public-detail-macro){
+    //     param(detail){
+    //       expression (result.publicResultStructure)
+    //     }
+    //   }
     
-    }
+    // }
   }
 }
 

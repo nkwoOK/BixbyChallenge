@@ -20,17 +20,18 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
   //     sX= departurePoint.point.longitude,
   //     eY= destinationPoint.point.latitude,
   //     eX= destinationPoint.point.longitude;
-  //큰일이야 큰일
     
   // console.log(http.getUrl(url, {format: 'xmljs'}))
 
   // 환승 api test code
 	// var url = "https://api.odsay.com/v1/api/searchPubTransPath?SX="+sX+"&SY="+sY+"&EX="+eX+"&EY="+eY+"&apiKey=sRoBDwzo/Sk1GRkUYI9zdw";
-  
+  var url1="https://api.odsay.com/v1/api/intercityServiceTime?lang=0&startStationID=3600750&endStationID=3600938&apiKey=ramBlYRtvsTstJnTkrSqLF46psg5XZgiOFkNoERqngc"
+  console.log(http.getUrl(url1, {format: 'json'})) 
   // var preUrl="https://api.odsay.com/v1/api/searchPubTransPathR?lang=0&SX=",
   //     url = preUrl+sX+"&SY="+sY+"&EX="+eX+"&EY="+eY+"&apiKey="+encodeURI('ramBlYRtvsTstJnTkrSqLF46psg5XZgiOFkNoERqngc');
   // console.log(url);
   // console.log(http.getUrl(url, {format: 'json'}));
+
 
   var pointTable= require('./pointtable.js').table,
       distanceTable={}
@@ -52,6 +53,7 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
   console.log(pointTable['시외버스']['동서울'])
   console.log(getDistanceFromLatLonInKm(36.5, 127, 36.6, 127.1))
 
+//시외버스 부분 코드 시작
   for(var key in pointTable['시외버스']){ //표 돌면서 거리계산하여 배열에 저장
     if(pointTable['시외버스'].hasOwnProperty(key)){
       var val=pointTable['시외버스'][key];
@@ -80,13 +82,12 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
   }
   sortArray.sort()//거리에 따라 정렬. 근데 9킬로짜리 왜 뒤로 갔지?
   console.log(sortArray) 
-
   console.log(sortArray[0][1])
 
   var departTerminalName=[]; // 20킬로 내의 정류장 4개 추가!
   for(var i=0; i<4;i++){
     if(sortArray[i][0]<20){
-      departTerminalName.push(sortArray[i][1])
+      departTerminalName.push([sortArray[i][1], sortArray[i][0]])
     }
   }
   console.log(departTerminalName)
@@ -96,11 +97,11 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
 
   var departTrminlCode=[]
   for(var i=0;i<departTerminalName.length;i++){ //터미널 코드 얻기
-    var linkTrminlCode=getTrminlCode+encodeURIComponent(departTerminalName[i]);
+    var linkTrminlCode=getTrminlCode+encodeURIComponent(departTerminalName[i][0]);
     // console.log(linkTrminlCode) //링크만들음
     var responseTrminlCode=http.getUrl(linkTrminlCode, {format: 'xmljs'})
     // console.log(responseTrminlCode)
-    departTrminlCode.push(responseTrminlCode.response.body.items.item.terminalId)
+    departTrminlCode.push([responseTrminlCode.response.body.items.item.terminalId, departTerminalName[i][1]]) //거리정보도 저장
   }
   console.log(departTrminlCode)
 
@@ -117,20 +118,15 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
   // 지금 서울에서 대전으로 출발하는 차 얻기
   var findBusInfo='http://openapi.tago.go.kr/openapi/service/SuburbsBusInfoService/getStrtpntAlocFndSuberbsBusInfo?serviceKey=4jdPRNRDm85%2FTOPw8hCSxu1XqZJpy%2BK%2BJOe7q%2BPdwkMgiuTT%2BUslWghej6U1go%2Baxig8H5Gf%2FWWAkLZryohhow%3D%3D&numOfRows=10&pageNo=1&'
 
-  var busResultArray=[], expressResultArray=[], trainResultArray=[];
-      
+  var publicResultArray=[]
 
   //그림 정하기
-  var filename= '/images/bus.jpg',
-      publicType='시외버스';
-
-
-
+  var filename= '/images/bus.jpg'
 
   for(var i=0;i<departTrminlCode.length;i++){
     for(var j=0;j<trialDesCode.length;j++){
       var timeInfoArray=[]
-      var linkBusInfo=findBusInfo+'depTerminalId='+departTrminlCode[i]+'&arrTerminalId='+trialDesCode[j]+'&depPlandTime='+timeString,
+      var linkBusInfo=findBusInfo+'depTerminalId='+departTrminlCode[i][0]+'&arrTerminalId='+trialDesCode[j]+'&depPlandTime='+timeString,
           responseBusInfo=http.getUrl(linkBusInfo, {format: 'xmljs'});
       //depTerminalId=NAI104600001&arrTerminalId=NAI252600075&depPlandTime=20161001&busGradeId=5
       console.log(responseBusInfo)
@@ -178,12 +174,13 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
             });
           }
 
-          busResultArray.push({
+          publicResultArray.push({
             departureName: responseItem[0].depPlaceNm,
             destinationName: responseItem[0].arrPlaceNm,
             timeStructure: timeInfoArray,
             // publicType: publicType,
-            filename: filename
+            filename: filename,
+            distance: departTrminlCode[i][1]
           }
           );
         }else{ //한개일때
@@ -194,12 +191,13 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
               busGrade: responseItem.gradeNm,
               charge: responseItem.charge
           })
-          busResultArray.push({
+          publicResultArray.push({
             departureName: responseItem.depPlaceNm,
             destinationName: responseItem.arrPlaceNm,
             // grade: responseItem.gradeNm,
             timeStructure: timeInfoArray,
-            filename: filename
+            filename: filename,
+            distance: departTrminlCode[i][1]
           });
         }
         
@@ -208,7 +206,7 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
   }
   
 
-  console.log(busResultArray)
+  console.log(publicResultArray)
 
   // 결과 저장할 array
 
@@ -225,7 +223,7 @@ module.exports.function = function checkpublicinfo (departurePoint, destinationP
   return {
     departurePoint: departurePoint, //일단 포인트 리턴하자!
     destinationPoint: destinationPoint,
-    publicResultStructure: busResultArray,
+    publicResultStructure: publicResultArray,
     // filename: filename 
   }
 }

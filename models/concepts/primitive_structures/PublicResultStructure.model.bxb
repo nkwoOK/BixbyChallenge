@@ -21,5 +21,10 @@ structure (PublicResultStructure) {
     min (Optional) max (One)
 
   }
+  property (distance){
+    type (Distance)
+    min (Optional) max (One)
+  }
 }
+
 

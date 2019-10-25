@@ -1,0 +1,6 @@
+// result-view{
+//   match{
+//     PublicInfoResult(result){
+//       from-output: CheckPublicInfo
+//     }
+//   }

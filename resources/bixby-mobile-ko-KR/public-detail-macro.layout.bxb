@@ -1,14 +1,78 @@
 layout-macro-def(public-detail-macro) {
   params{
-    param (this){
-      type (PublicInfoResult)
+    param (detail){
+      type (PublicResultStructure)
       min (Optional)
       max (Many)
     }
   }
 
   content{
+    section{
+      content{
+        for-each (detail.timeStructure){
+          as (timeStructure){
+            hbox{
+              content{
+                vbox{
+                  content{
+                    text{
+                      style(Detail_L)
+                      value("#{value(timeStructure.departTime)}")
+                    }
+                  }
+                }
+                divider
+                vbox{
+                  content{
+                    text{
+                      style(Detail_L)
+                      value("#{value(timeStructure.arriveTime)}")
+                    }
+                  }
+                }
+                divider
+                vbox{
+                  content{
+                    text{
+                      style(Detail_L)
+                      value("#{value(timeStructure.drivingTime)}")
+                    }
+                  }
+                }
+                divider
+                vbox{
+                  content{
+                    text{
+                      style(Detail_L)
+                      value("#{value(timeStructure.busGrade)}")
+                    }
+                  }
+                }
+                divider
+                vbox{
+                  content{
+                    text{
+                      style(Detail_L)
+                      value("#{value(timeStructure.charge)}")
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
 
+    }
+    // single-line{
+    //   text{
+    //     value{
+    //       template ("fff ")
+    //     }
+    //   }
+    // }
+    
   }
 
 }
